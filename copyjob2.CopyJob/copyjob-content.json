@@ -1,0 +1,65 @@
+{
+  "properties": {
+    "jobMode": "Batch",
+    "source": {
+      "type": "DataWarehouseTable",
+      "connectionSettings": {
+        "type": "DataWarehouse",
+        "typeProperties": {
+          "workspaceId": "849ff2c1-5387-48ac-8a35-35fb379168ed",
+          "artifactId": "acd9726b-c01f-44e7-8635-ccd1824fdc58",
+          "endPoint": "f5e2gcwhbfmeveyo6dzypgarky-yhzj7behkowercrvgx5tpeli5u.datawarehouse.fabric.microsoft.com"
+        },
+        "externalReferences": {
+          "connection": "cd69f340-c6dc-423e-88c1-1c41e3a1a1b6"
+        }
+      }
+    },
+    "destination": {
+      "type": "LakehouseTable",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": {
+          "workspaceId": "00000000-0000-0000-0000-000000000000",
+          "artifactId": "797cf415-14be-9047-43b0-019696d2d4fa",
+          "rootFolder": "Tables"
+        },
+        "externalReferences": {
+          "connection": "42d657a1-06d4-4264-8f1a-01e3b4fd9cc9"
+        }
+      }
+    },
+    "policy": {
+      "timeout": "0.12:00:00"
+    }
+  },
+  "activities": [
+    {
+      "id": "dffb0dd9-3de9-4cd9-ba98-ca19a3b1c8ef",
+      "properties": {
+        "source": {
+          "datasetSettings": {
+            "schema": "dbo",
+            "table": "Date"
+          }
+        },
+        "destination": {
+          "writeBehavior": "Append",
+          "datasetSettings": {
+            "table": "dbo_Date"
+          }
+        },
+        "enableStaging": false,
+        "translator": {
+          "type": "TabularTranslator"
+        },
+        "typeConversionSettings": {
+          "typeConversion": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+          }
+        }
+      }
+    }
+  ]
+}
