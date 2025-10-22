@@ -1,0 +1,72 @@
+{
+  "properties": {
+    "jobMode": "CDC",
+    "source": {
+      "type": "DelimitedText",
+      "connectionSettings": {
+        "type": "Lakehouse",
+        "typeProperties": {
+          "workspaceId": "849ff2c1-5387-48ac-8a35-35fb379168ed",
+          "artifactId": "055f6905-ab43-4334-acae-1a3febcc59ba",
+          "rootFolder": "Files"
+        }
+      }
+    },
+    "destination": {
+      "type": "DataWarehouseTable",
+      "connectionSettings": {
+        "type": "DataWarehouse",
+        "typeProperties": {
+          "workspaceId": "849ff2c1-5387-48ac-8a35-35fb379168ed",
+          "artifactId": "ef8c8861-21f8-4985-811a-05bc4f8f5016",
+          "endPoint": "f5e2gcwhbfmeveyo6dzypgarky-yhzj7behkowercrvgx5tpeli5u.datawarehouse.fabric.microsoft.com"
+        }
+      }
+    },
+    "policy": {
+      "timeout": "0.12:00:00"
+    }
+  },
+  "activities": [
+    {
+      "id": "bef81b38-6aed-4edf-b267-bd5690e5d2d0",
+      "properties": {
+        "source": {
+          "datasetSettings": {
+            "location": {
+              "type": "LakehouseLocation",
+              "fileName": "products.csv"
+            },
+            "columnDelimiter": ",",
+            "escapeChar": "\\",
+            "firstRowAsHeader": true,
+            "quoteChar": "\""
+          },
+          "changeDataSettings": {},
+          "storeSettings": {
+            "recursive": true,
+            "enablePartitionDiscovery": false
+          },
+          "formatSettings": {}
+        },
+        "destination": {
+          "tableOption": "autoCreate",
+          "datasetSettings": {
+            "schema": "dbo",
+            "table": "products"
+          }
+        },
+        "enableStaging": true,
+        "translator": {
+          "type": "TabularTranslator"
+        },
+        "typeConversionSettings": {
+          "typeConversion": {
+            "allowDataTruncation": true,
+            "treatBooleanAsNumber": false
+          }
+        }
+      }
+    }
+  ]
+}
